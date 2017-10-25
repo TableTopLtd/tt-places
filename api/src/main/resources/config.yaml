@@ -8,8 +8,8 @@ kumuluzee:
     http:
       port: 8081
   datasources:
-    - jndi-name: jdbc/OrdersDS
-      connection-url: jdbc:postgresql://127.0.0.1:5433/order
+    - jndi-name: jdbc/PlacesDS
+      connection-url: jdbc:postgresql://127.0.0.1:5433/place
       username: dbuser
       password: postgres
       max-pool-size: 20

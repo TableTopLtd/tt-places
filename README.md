@@ -3,7 +3,7 @@
 ## Prerequisites
 
 ```bash
-docker run -d --name tt-places-db -e POSTGRES_USER=dbuser -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=order -p 5433:5432 postgres:latest
+docker run -d --name tt-places-db -e POSTGRES_USER=dbuser -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=place -p 5433:5432 postgres:latest
 ```
 
 ## When developing
