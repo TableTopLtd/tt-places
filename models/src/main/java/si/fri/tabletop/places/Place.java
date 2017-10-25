@@ -13,6 +13,7 @@ import java.util.Date;
 @UuidGenerator(name = "idGenerator")
 public class Place {
 
+    // TODO replace attributes with real ones
     @Id
     @GeneratedValue(generator = "idGenerator")
     private String id;
@@ -26,6 +27,7 @@ public class Place {
     @Column(name = "customer_id")
     private String customerId;
 
+    // Getters and setters
     public String getId() {
         return id;
     }

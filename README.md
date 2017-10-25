@@ -21,6 +21,16 @@ java -jar api/target/*.jar
 
 Microservice finds database through ip
 
+To test the service you should go to
+```
+http://localhost:8081/v1/places
+```
+To see a list of all places.
+
+```
+http://localhost:8081/v1/places/1
+```
+To see the first one, etc.
 
 ## Build docker image
 ```bash
