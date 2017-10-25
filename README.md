@@ -1,4 +1,4 @@
-# RSO: Orders microservice
+# TableTop Places microservice
 
 ## Prerequisites
 
