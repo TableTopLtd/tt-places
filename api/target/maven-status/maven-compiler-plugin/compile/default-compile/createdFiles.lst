@@ -1,5 +1,0 @@
-si/fri/tabletop/places/api/v1/OrdersApplication.class
-si/fri/tabletop/places/api/v1/resources/OrdersResource.class
-si/fri/tabletop/places/api/v1/dtos/ApiError.class
-si/fri/tabletop/places/api/v1/mappers/NotFoundExceptionMapper.class
-si/fri/tabletop/places/api/v1/producers/JacksonProducer.class
