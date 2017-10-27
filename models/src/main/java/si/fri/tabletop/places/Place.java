@@ -12,8 +12,7 @@ import java.util.Date;
         })
 @UuidGenerator(name = "idGenerator")
 public class Place {
-
-    // TODO replace attributes with real ones
+    
     @Id
     @GeneratedValue(generator = "idGenerator")
     private String id;
@@ -21,9 +20,6 @@ public class Place {
     private String title;
 
     private String description;
-
-    @Column()
-    private String placeType;
 
     private String address;
 
@@ -46,8 +42,8 @@ public class Place {
         return title;
     }
 
-    public void setTitle(String name) {
-        this.title = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -56,14 +52,6 @@ public class Place {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getType() {
-        return placeType;
-    }
-
-    public void setType(String type) {
-        this.placeType = type;
     }
 
     public String getAddress() {
