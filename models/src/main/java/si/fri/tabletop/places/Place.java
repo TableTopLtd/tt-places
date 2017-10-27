@@ -22,10 +22,16 @@ public class Place {
 
     private String description;
 
-    private Date submitted;
+    @Column()
+    private String placeType;
 
-    @Column(name = "customer_id")
-    private String customerId;
+    private String address;
+
+    @Column(name = "postal_code")
+    private int postalCode;
+
+    @Column(name = "country_code")
+    private String countryCode;
 
     // Getters and setters
     public String getId() {
@@ -40,8 +46,8 @@ public class Place {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitle(String name) {
+        this.title = name;
     }
 
     public String getDescription() {
@@ -52,19 +58,35 @@ public class Place {
         this.description = description;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public String getType() {
+        return placeType;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setType(String type) {
+        this.placeType = type;
     }
 
-    public Date getSubmitted() {
-        return submitted;
+    public String getAddress() {
+        return address;
     }
 
-    public void setSubmitted(Date submitted) {
-        this.submitted = submitted;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(int postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
     }
 }
