@@ -12,8 +12,7 @@ import java.util.Date;
         })
 @UuidGenerator(name = "idGenerator")
 public class Place {
-
-    // TODO replace attributes with real ones
+    
     @Id
     @GeneratedValue(generator = "idGenerator")
     private String id;
@@ -22,10 +21,13 @@ public class Place {
 
     private String description;
 
-    private Date submitted;
+    private String address;
 
-    @Column(name = "customer_id")
-    private String customerId;
+    @Column(name = "postal_code")
+    private int postalCode;
+
+    @Column(name = "country_code")
+    private String countryCode;
 
     // Getters and setters
     public String getId() {
@@ -52,19 +54,27 @@ public class Place {
         this.description = description;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public String getAddress() {
+        return address;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public Date getSubmitted() {
-        return submitted;
+    public int getPostalCode() {
+        return postalCode;
     }
 
-    public void setSubmitted(Date submitted) {
-        this.submitted = submitted;
+    public void setPostalCode(int postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
     }
 }
