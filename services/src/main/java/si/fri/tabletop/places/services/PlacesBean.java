@@ -1,21 +1,52 @@
 package si.fri.tabletop.places.services;
 
+import com.kumuluz.ee.logs.LogManager;
+import com.kumuluz.ee.logs.Logger;
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import com.kumuluz.ee.rest.utils.JPAUtils;
+import si.fri.tabletop.menus.models.Menu;
 import si.fri.tabletop.places.models.Place;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.ws.rs.NotFoundException;
+import javax.ws.rs.ProcessingException;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.UriInfo;
+import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
 public class PlacesBean {
 
+    private Logger log = LogManager.getLogger(PlacesBean.class.getName());
+
+    //@Inject
+    //private RestProperties restProperties;
+
     @Inject
     private EntityManager em;
+
+    @Inject
+    private PlacesBean placesBean;
+
+    private Client httpClient;
+
+    // TODO: Change when we have config server
+    //@Inject
+    //@DiscoverService("tt-menus")
+    //private Optional<String> baseUrl;
+    private String baseUrl = "http://localhost";
+
+    @PostConstruct
+    private void init() {
+        httpClient = ClientBuilder.newClient();
+    }
 
     public List<Place> getPlaces(UriInfo uriInfo) {
 
@@ -34,6 +65,12 @@ public class PlacesBean {
         if (place == null) {
             throw new NotFoundException();
         }
+
+        // TODO: Change when we have config server
+        //if (restProperties.isMenuServiceEnabled()) {
+        List<Menu> menus = placesBean.getMenus(placeId);
+        place.setMenus(menus);
+        //}
 
         return place;
     }
@@ -87,6 +124,25 @@ public class PlacesBean {
             return false;
 
         return true;
+    }
+
+    public List<Menu> getMenus(String placeId) {
+
+        // TODO: Change when we have config server
+        //if (baseUrl.isPresent()) {
+        try {
+            return httpClient
+                    .target(baseUrl + "/v1/menus?where=placeId:EQ:" + placeId)
+                    .request().get(new GenericType<List<Menu>>() {
+                    });
+        }catch (WebApplicationException | ProcessingException e) {
+            log.error(e);
+            return new ArrayList<>();
+            //throw new InternalServerErrorException();
+        }
+        // }
+
+        //return new ArrayList<>();
     }
 
     private void beginTx() {
