@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.ProcessingException;
 import javax.ws.rs.WebApplicationException;
@@ -41,7 +42,7 @@ public class PlacesBean {
     //@Inject
     //@DiscoverService("tt-menus")
     //private Optional<String> baseUrl;
-    private String baseUrl = "http://localhost";
+    private String baseUrl = "http://localhost:8081";
 
     @PostConstruct
     private void init() {
@@ -128,6 +129,7 @@ public class PlacesBean {
 
     public List<Menu> getMenus(String placeId) {
 
+        log.info("PLACE ID: "+ placeId);
         // TODO: Change when we have config server
         //if (baseUrl.isPresent()) {
         try {
@@ -137,8 +139,8 @@ public class PlacesBean {
                     });
         }catch (WebApplicationException | ProcessingException e) {
             log.error(e);
-            return new ArrayList<>();
-            //throw new InternalServerErrorException();
+            //return new ArrayList<>();
+            throw new InternalServerErrorException();
         }
         // }
 

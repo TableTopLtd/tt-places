@@ -3,7 +3,7 @@
 ## Prerequisites
 
 ```bash
-docker run -d --name tt-places-db -e POSTGRES_USER=dbuser -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=place -p 5433:5432 postgres:latest
+docker run -d --name tt-places-db -e POSTGRES_USER=dbuser -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=place -p 5434:5432 postgres:latest
 ```
 
 ## When developing
@@ -23,12 +23,12 @@ Microservice finds database through ip
 
 To test the service you should go to
 ```
-http://localhost:8081/v1/places
+http://localhost:8082/v1/places
 ```
 To see a list of all places.
 
 ```
-http://localhost:8081/v1/places/1
+http://localhost:8082/v1/places/1
 ```
 To see the first one, etc.
 

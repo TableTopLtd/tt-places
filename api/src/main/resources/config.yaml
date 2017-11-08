@@ -4,12 +4,12 @@ kumuluzee:
     name: dev
   version: 1.0.0
   server:
-    base-url: http://localhost:8081
+    base-url: http://localhost:8082
     http:
-      port: 8081
+      port: 8082
   datasources:
     - jndi-name: jdbc/PlacesDS
-      connection-url: jdbc:postgresql://127.0.0.1:5433/place
+      connection-url: jdbc:postgresql://127.0.0.1:5434/place
       username: dbuser
       password: postgres
       max-pool-size: 20
