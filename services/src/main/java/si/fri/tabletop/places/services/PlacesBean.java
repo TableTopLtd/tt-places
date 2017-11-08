@@ -2,7 +2,7 @@ package si.fri.tabletop.places.services;
 
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import com.kumuluz.ee.rest.utils.JPAUtils;
-import si.fri.tabletop.places.Place;
+import si.fri.tabletop.places.models.Place;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

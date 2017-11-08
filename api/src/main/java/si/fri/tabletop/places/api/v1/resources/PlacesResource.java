@@ -1,6 +1,6 @@
 package si.fri.tabletop.places.api.v1.resources;
 
-import si.fri.tabletop.places.Place;
+import si.fri.tabletop.places.models.Place;
 import si.fri.tabletop.places.services.PlacesBean;
 
 import javax.enterprise.context.ApplicationScoped;
