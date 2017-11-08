@@ -3,7 +3,7 @@
     <persistence-unit name="places-jpa" transaction-type="RESOURCE_LOCAL">
         <non-jta-data-source>jdbc/PlacesDS</non-jta-data-source>
 
-        <class>si.fri.tabletop.places.Place</class>
+        <class>si.fri.tabletop.places.models.Place</class>
 
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>

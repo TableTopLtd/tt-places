@@ -1,4 +1,4 @@
-package si.fri.tabletop.places;
+package si.fri.tabletop.places.models;
 
 import org.eclipse.persistence.annotations.UuidGenerator;
 
@@ -12,7 +12,7 @@ import java.util.Date;
         })
 @UuidGenerator(name = "idGenerator")
 public class Place {
-    
+
     @Id
     @GeneratedValue(generator = "idGenerator")
     private String id;
