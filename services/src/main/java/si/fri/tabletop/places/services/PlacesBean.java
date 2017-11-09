@@ -4,7 +4,6 @@ import com.kumuluz.ee.logs.LogManager;
 import com.kumuluz.ee.logs.Logger;
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import com.kumuluz.ee.rest.utils.JPAUtils;
-import si.fri.tabletop.menus.models.Menu;
 import si.fri.tabletop.places.models.Place;
 
 import javax.annotation.PostConstruct;
@@ -127,6 +126,7 @@ public class PlacesBean {
         return true;
     }
 
+    /**
     public List<Menu> getMenus(String placeId) {
 
         log.info("PLACE ID: "+ placeId);
@@ -145,7 +145,7 @@ public class PlacesBean {
         // }
 
         //return new ArrayList<>();
-    }
+    }**/
 
     private void beginTx() {
         if (!em.getTransaction().isActive())
