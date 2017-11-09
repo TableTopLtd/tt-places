@@ -14,7 +14,7 @@ cache:
   - $HOME/.m2
 
 env:
-  - DOCKER_IMAGE=tt-places
+  - DOCKER_IMAGE=tabletopltd/tt-places:latest
 
 script:
   - mvn clean package -U
