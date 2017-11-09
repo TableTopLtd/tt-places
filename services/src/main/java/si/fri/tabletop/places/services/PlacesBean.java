@@ -6,6 +6,7 @@ import com.kumuluz.ee.rest.beans.QueryParameters;
 import com.kumuluz.ee.rest.utils.JPAUtils;
 import si.fri.tabletop.places.models.dependent.Menu;
 import si.fri.tabletop.places.models.Place;
+import si.fri.tabletop.places.services.config.RestProperties;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -26,8 +27,8 @@ public class PlacesBean {
 
     private Logger log = LogManager.getLogger(PlacesBean.class.getName());
 
-    //@Inject
-    //private RestProperties restProperties;
+    @Inject
+    private RestProperties restProperties;
 
     @Inject
     private EntityManager em;

@@ -2,6 +2,7 @@ package si.fri.tabletop.places.api.v1.resources;
 
 import si.fri.tabletop.places.models.Place;
 import si.fri.tabletop.places.services.PlacesBean;
+import si.fri.tabletop.places.services.config.RestProperties;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -23,6 +24,9 @@ public class PlacesResource {
 
     @Inject
     private PlacesBean placesBean;
+
+    @Inject
+    private RestProperties restProperties;
 
     @GET
     public Response getPlaces() {
@@ -89,4 +93,16 @@ public class PlacesResource {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
+
+    @GET
+    @Path("/config")
+    public Response config() {
+        String response =
+                "{\n" +
+                        "    \"endpointEnabled\": \"%b\"\n" +
+                        "}";
+        response = String.format(response, restProperties.isMenuServiceEnabled());
+        return Response.ok(response).build();
+    }
+
 }

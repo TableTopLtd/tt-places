@@ -13,3 +13,11 @@ kumuluzee:
       username: dbuser
       password: postgres
       max-pool-size: 20
+  config:
+    etcd:
+      hosts: http://localhost:2379
+
+rest-properties:
+  external-services:
+    menu-service:
+      enabled: true
