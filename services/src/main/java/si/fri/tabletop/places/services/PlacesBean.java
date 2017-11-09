@@ -69,8 +69,8 @@ public class PlacesBean {
 
         // TODO: Change when we have config server
         //if (restProperties.isMenuServiceEnabled()) {
-        List<Menu> menus = placesBean.getMenus(placeId);
-        place.setMenus(menus);
+        //List<Menu> menus = placesBean.getMenus(placeId);
+        //place.setMenus(menus);
         //}
 
         return place;
