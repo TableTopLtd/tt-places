@@ -4,13 +4,13 @@ import com.kumuluz.ee.logs.LogManager;
 import com.kumuluz.ee.logs.Logger;
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import com.kumuluz.ee.rest.utils.JPAUtils;
+import si.fri.tabletop.places.models.dependent.Menu;
 import si.fri.tabletop.places.models.Place;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.ProcessingException;
 import javax.ws.rs.WebApplicationException;
@@ -68,8 +68,8 @@ public class PlacesBean {
 
         // TODO: Change when we have config server
         //if (restProperties.isMenuServiceEnabled()) {
-        //List<Menu> menus = placesBean.getMenus(placeId);
-        //place.setMenus(menus);
+        List<Menu> menus = placesBean.getMenus(placeId);
+        place.setMenus(menus);
         //}
 
         return place;
@@ -126,7 +126,7 @@ public class PlacesBean {
         return true;
     }
 
-    /**
+
     public List<Menu> getMenus(String placeId) {
 
         log.info("PLACE ID: "+ placeId);
@@ -139,13 +139,13 @@ public class PlacesBean {
                     });
         }catch (WebApplicationException | ProcessingException e) {
             log.error(e);
-            //return new ArrayList<>();
-            throw new InternalServerErrorException();
+            return new ArrayList<>();
+            //throw new InternalServerErrorException();
         }
         // }
 
         //return new ArrayList<>();
-    }**/
+    }
 
     private void beginTx() {
         if (!em.getTransaction().isActive())

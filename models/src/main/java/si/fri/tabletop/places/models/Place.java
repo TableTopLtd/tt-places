@@ -1,6 +1,7 @@
 package si.fri.tabletop.places.models;
 
 import org.eclipse.persistence.annotations.UuidGenerator;
+import si.fri.tabletop.places.models.dependent.Menu;
 
 import javax.persistence.*;
 import java.util.List;
@@ -29,8 +30,8 @@ public class Place {
     @Column(name = "country_code")
     private String countryCode;
 
-    //@Transient
-    //private List<Menu> menus;
+
+    private List<Menu> menus;
 
     // Getters and setters
     public String getId() {
@@ -81,7 +82,7 @@ public class Place {
         this.countryCode = countryCode;
     }
 
-    /**
+
     public List<Menu> getMenus() {
         return menus;
     }
@@ -89,5 +90,5 @@ public class Place {
     public void setMenus(List<Menu> menus) {
         this.menus = menus;
     }
-     **/
+
 }
