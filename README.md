@@ -1,5 +1,5 @@
 # TableTop Places microservice
-
+[![Build Status](https://travis-ci.org/TableTopLtd/tt-places.svg?branch=master)](https://travis-ci.org/TableTopLtd/tt-places)
 ## Prerequisites
 
 ```bash
