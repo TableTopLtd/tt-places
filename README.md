@@ -73,3 +73,4 @@ docker run --rm --name etcd-browser -p 0.0.0.0:8000:8000 --env ETCD_HOST=10.10.0
 ```
 This should start a server at localhost:8000. If it doesn't see linked repo for full instructions.
    
+For example config change `enabled` property in `ETCD_HOST:2379/v2/keys/environments/dev/services/tt-places/1.0.0/config/rest-properties/external-services/menu-service`
