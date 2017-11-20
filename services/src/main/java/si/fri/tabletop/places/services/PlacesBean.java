@@ -4,6 +4,8 @@ import com.kumuluz.ee.logs.LogManager;
 import com.kumuluz.ee.logs.Logger;
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import com.kumuluz.ee.rest.utils.JPAUtils;
+import com.kumuluz.ee.discovery.annotations.DiscoverService;
+
 import si.fri.tabletop.places.models.dependent.Menu;
 import si.fri.tabletop.places.models.Place;
 import si.fri.tabletop.places.services.config.RestProperties;
@@ -21,6 +23,7 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.UriInfo;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @ApplicationScoped
 public class PlacesBean {
@@ -39,10 +42,10 @@ public class PlacesBean {
     private Client httpClient;
 
     // TODO: Change when we have config server
-    //@Inject
-    //@DiscoverService("tt-menus")
-    //private Optional<String> baseUrl;
-    private String baseUrl = "http://localhost:8081";
+    @Inject
+    @DiscoverService("tt-menus")
+    private Optional<String> baseUrl;
+
 
     @PostConstruct
     private void init() {
@@ -130,22 +133,19 @@ public class PlacesBean {
 
     public List<Menu> getMenus(String placeId) {
 
-        log.info("PLACE ID: "+ placeId);
-        // TODO: Change when we have config server
-        //if (baseUrl.isPresent()) {
-        try {
-            return httpClient
-                    .target(baseUrl + "/v1/menus?where=placeId:EQ:" + placeId)
-                    .request().get(new GenericType<List<Menu>>() {
-                    });
-        }catch (WebApplicationException | ProcessingException e) {
-            log.error(e);
-            return new ArrayList<>();
-            //throw new InternalServerErrorException();
+        if (baseUrl.isPresent()) {
+            try {
+                return httpClient
+                        .target(baseUrl + "/v1/menus?where=placeId:EQ:" + placeId)
+                        .request().get(new GenericType<List<Menu>>() {
+                        });
+            }catch (WebApplicationException | ProcessingException e) {
+                log.error(e);
+                return new ArrayList<>();
+                //throw new InternalServerErrorException();
+            }
         }
-        // }
-
-        //return new ArrayList<>();
+        return new ArrayList<>();
     }
 
     private void beginTx() {
