@@ -136,7 +136,7 @@ public class PlacesBean {
         if (baseUrl.isPresent()) {
             try {
                 return httpClient
-                        .target(baseUrl + "/v1/menus?where=placeId:EQ:" + placeId)
+                        .target(baseUrl.get() + "/v1/menus?where=placeId:EQ:" + placeId)
                         .request().get(new GenericType<List<Menu>>() {
                         });
             }catch (WebApplicationException | ProcessingException e) {
