@@ -24,6 +24,6 @@ spec:
           - name: KUMULUZEE_SERVER_BASEURL
             value: http://localhost:32696
         ports:
-        - containerPort: 8080
+        - containerPort: 8082
           name: server
           protocol: TCP

@@ -7,7 +7,7 @@ spec:
   template:
     metadata:
       labels:
-        app: postgres-customers
+        app: postgres-places
     spec:
       containers:
         - image: centos/postgresql-94-centos7
