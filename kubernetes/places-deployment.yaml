@@ -1,0 +1,29 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: places-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: places
+    spec:
+      containers:
+      - image: tabletopltd/tt-places
+        name: places
+        env:
+          - name: KUMULUZEE_DISCOVERY_CLUSTER
+            value: bluemix
+          - name: KUMULUZEE_DISCOVERY_ETCD_HOSTS
+            value: http://etcd:2379
+          - name: KUMULUZEE_CONFIG_ETCD_HOSTS
+            value: http://etcd:2379
+          - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
+            value: jdbc:postgresql://postgres-places:5432/place
+          - name: KUMULUZEE_SERVER_BASEURL
+            value: http://localhost:32696
+        ports:
+        - containerPort: 8080
+          name: server
+          protocol: TCP
