@@ -134,6 +134,7 @@ public class PlacesBean {
     public List<Menu> getMenus(String placeId) {
 
         if (baseUrl.isPresent()) {
+            log.info("BASE URL REQUEST TO "+baseUrl.get());
             try {
                 return httpClient
                         .target(baseUrl.get() + "/v1/menus?where=placeId:EQ:" + placeId)
