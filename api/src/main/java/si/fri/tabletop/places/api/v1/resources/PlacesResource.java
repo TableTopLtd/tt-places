@@ -1,5 +1,6 @@
 package si.fri.tabletop.places.api.v1.resources;
 
+import com.kumuluz.ee.logs.cdi.Log;
 import si.fri.tabletop.places.models.Place;
 import si.fri.tabletop.places.services.PlacesBean;
 import si.fri.tabletop.places.services.config.RestProperties;
@@ -17,6 +18,7 @@ import java.util.List;
 @Path("/places")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@Log
 public class PlacesResource {
 
     @Context

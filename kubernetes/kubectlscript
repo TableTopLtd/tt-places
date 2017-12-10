@@ -1,9 +1,11 @@
 kubectl delete deploy places-deployment
 kubectl delete deploy postgres-places-deployment
+kubectl delete deploy grafana
 kubectl delete deploy etcd-deployment
 
 kubectl create -f etcd.yaml
 kubectl create -f postgres-places.yaml
 kubectl create -f places-deployment.yaml
+kubectl create -f grafana-deployment.yaml
 
 kubectl proxy
