@@ -1,7 +1,7 @@
 kubectl delete deploy places-deployment
 kubectl delete deploy postgres-places-deployment
 
-kubectl create -f postgres-places.yaml
+kubectl create -f postgres-places-deployment.yaml
 kubectl create -f places-deployment.yaml
 
 kubectl proxy
