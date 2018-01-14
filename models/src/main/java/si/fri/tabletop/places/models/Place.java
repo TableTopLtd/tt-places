@@ -2,6 +2,7 @@ package si.fri.tabletop.places.models;
 
 import org.eclipse.persistence.annotations.UuidGenerator;
 import si.fri.tabletop.places.models.dependent.Menu;
+import si.fri.tabletop.places.models.dependent.Order;
 
 import javax.persistence.*;
 import java.util.List;
@@ -32,6 +33,7 @@ public class Place {
 
 
     private List<Menu> menus;
+    private List<Order> orders;
 
     // Getters and setters
     public String getId() {
@@ -89,6 +91,14 @@ public class Place {
 
     public void setMenus(List<Menu> menus) {
         this.menus = menus;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
 }
