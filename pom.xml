@@ -71,18 +71,6 @@
                 <version>1.0.0-SNAPSHOT</version>
             </dependency>
 
-            <!-- from https://github.com/kumuluz/kumuluzee-samples/blob/master/kumuluzee-config-etcd/pom.xml -->
-
-            <dependency>
-                <groupId>com.kumuluz.ee</groupId>
-                <artifactId>kumuluzee-servlet-jetty</artifactId>
-                <version>2.5.0-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.kumuluz.ee</groupId>
-                <artifactId>kumuluzee-jax-rs-jersey</artifactId>
-                <version>2.5.0-SNAPSHOT</version>
-            </dependency>
             <dependency>
                 <groupId>com.kumuluz.ee.config</groupId>
                 <artifactId>kumuluzee-config-etcd</artifactId>
