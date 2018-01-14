@@ -23,6 +23,7 @@ spec:
             value: jdbc:postgresql://postgres-places:5432/place
           - name: KUMULUZEE_SERVER_BASEURL
             value: http://localhost:32696
+          - name: KUMULUZEE_DISCOVERY
         ports:
         - containerPort: 8082
           name: server
