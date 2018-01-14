@@ -41,5 +41,5 @@ kumuluzee:
                     </Configuration>'
 rest-properties:
   external-services:
-    places-service:
+    menu-service:
       enabled: true
