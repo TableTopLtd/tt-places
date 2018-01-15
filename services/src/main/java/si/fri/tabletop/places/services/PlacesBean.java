@@ -7,6 +7,7 @@ import com.kumuluz.ee.rest.utils.JPAUtils;
 import com.kumuluz.ee.discovery.annotations.DiscoverService;
 
 import si.fri.tabletop.places.models.dependent.Menu;
+import si.fri.tabletop.places.models.dependent.Order;
 import si.fri.tabletop.places.models.Place;
 import si.fri.tabletop.places.services.config.RestProperties;
 
@@ -46,6 +47,10 @@ public class PlacesBean {
     @DiscoverService("tt-menus")
     private Optional<String> baseUrl;
 
+    @Inject
+    @DiscoverService("tt-orders")
+    private Optional<String> ordersUrl;
+
 
     @PostConstruct
     private void init() {
@@ -74,6 +79,9 @@ public class PlacesBean {
         //if (restProperties.isMenuServiceEnabled()) {
         List<Menu> menus = placesBean.getMenus(placeId);
         place.setMenus(menus);
+
+        List<Order> orders = placesBean.getActiveOrders(placeId);
+        place.setOrders(orders);
         //}
 
         return place;
@@ -144,6 +152,21 @@ public class PlacesBean {
                 log.error(e);
                 return new ArrayList<>();
                 //throw new InternalServerErrorException();
+            }
+        }
+        return new ArrayList<>();
+    }
+
+    public List<Order> getActiveOrders(String placeId){
+        if(ordersUrl.isPresent()){
+            try {
+                return httpClient
+                        .target(ordersUrl.get() + "/v1/orders?where=placeId:EQ:" + placeId)
+                        .request().get(new GenericType<List<Order>>() {
+                        });
+            } catch (WebApplicationException | ProcessingException e) {
+                log.error(e);
+                return new ArrayList<>();
             }
         }
         return new ArrayList<>();
