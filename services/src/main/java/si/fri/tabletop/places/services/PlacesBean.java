@@ -5,6 +5,9 @@ import com.kumuluz.ee.logs.Logger;
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import com.kumuluz.ee.rest.utils.JPAUtils;
 import com.kumuluz.ee.discovery.annotations.DiscoverService;
+import org.eclipse.microprofile.faulttolerance.CircuitBreaker;
+import org.eclipse.microprofile.faulttolerance.Fallback;
+import org.eclipse.microprofile.faulttolerance.Timeout;
 
 import si.fri.tabletop.places.models.dependent.Menu;
 import si.fri.tabletop.places.models.dependent.Order;
@@ -23,6 +26,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.UriInfo;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -157,6 +161,8 @@ public class PlacesBean {
         return new ArrayList<>();
     }
 
+    @Fallback(fallbackMethod = "getActiveOrdersFallback")
+    @Timeout
     public List<Order> getActiveOrders(String placeId){
         if(ordersUrl.isPresent()){
             try {
@@ -170,6 +176,20 @@ public class PlacesBean {
             }
         }
         return new ArrayList<>();
+    }
+
+    public List<Order> getActiveOrdersFallback(String placeId) {
+        List<Order> orders = new ArrayList<>();
+
+        Order order = new Order();
+
+        order.setTable(-1);
+        order.setOrderTime(new Date());
+        order.setId("-1");
+
+        orders.add(order);
+
+        return orders;
     }
 
     private void beginTx() {

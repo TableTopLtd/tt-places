@@ -13,11 +13,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>si.fri.tabletop</groupId>
-            <artifactId>places-models</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.kumuluz.ee</groupId>
             <artifactId>kumuluzee-cdi-weld</artifactId>
         </dependency>
@@ -33,6 +28,15 @@
         <dependency>
             <groupId>com.kumuluz.ee.discovery</groupId>
             <artifactId>kumuluzee-discovery-etcd</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee.fault.tolerance</groupId>
+            <artifactId>kumuluzee-fault-tolerance-hystrix</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>si.fri.tabletop</groupId>
+            <artifactId>places-models</artifactId>
         </dependency>
     </dependencies>
 
