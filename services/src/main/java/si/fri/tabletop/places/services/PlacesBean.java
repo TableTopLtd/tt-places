@@ -1,5 +1,7 @@
 package si.fri.tabletop.places.services;
 
+import com.kumuluz.ee.fault.tolerance.annotations.CommandKey;
+import com.kumuluz.ee.fault.tolerance.annotations.GroupKey;
 import com.kumuluz.ee.logs.LogManager;
 import com.kumuluz.ee.logs.Logger;
 import com.kumuluz.ee.rest.beans.QueryParameters;
@@ -16,6 +18,7 @@ import si.fri.tabletop.places.services.config.RestProperties;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.ws.rs.NotFoundException;
@@ -25,6 +28,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.UriInfo;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -161,24 +165,23 @@ public class PlacesBean {
         return new ArrayList<>();
     }
 
+    @CircuitBreaker
+    @Timeout(value = 2, unit = ChronoUnit.SECONDS)
     @Fallback(fallbackMethod = "getActiveOrdersFallback")
-    @Timeout
     public List<Order> getActiveOrders(String placeId){
-        if(ordersUrl.isPresent()){
-            try {
-                return httpClient
-                        .target(ordersUrl.get() + "/v1/orders?where=placeId:EQ:" + placeId)
-                        .request().get(new GenericType<List<Order>>() {
-                        });
-            } catch (WebApplicationException | ProcessingException e) {
-                log.error(e);
-                return new ArrayList<>();
-            }
+        try {
+            return httpClient
+                    .target(ordersUrl.get() + "/v1/orders?where=placeId:EQ:" + placeId)
+                    .request().get(new GenericType<List<Order>>() {
+                    });
+        } catch (WebApplicationException | ProcessingException e) {
+            log.error(e);
+            return new ArrayList<>();
         }
-        return new ArrayList<>();
     }
 
     public List<Order> getActiveOrdersFallback(String placeId) {
+        System.out.print("Inside fallback method");
         List<Order> orders = new ArrayList<>();
 
         Order order = new Order();
